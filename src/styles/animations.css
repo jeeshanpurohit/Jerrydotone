@@ -1,0 +1,100 @@
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/* Marquee Infinite Loop */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Spider-Man hanging pendulum swing */
+@keyframes spider-swing {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Subtle breathing / floating animation for floating widgets */
+@keyframes float-gentle-1 {
+  0%, 100% {
+    transform: translateZ(75px) translateY(0px);
+  }
+  50% {
+    transform: translateZ(75px) translateY(-8px);
+  }
+}
+
+@keyframes float-gentle-2 {
+  0%, 100% {
+    transform: translateZ(85px) translateY(0px);
+  }
+  50% {
+    transform: translateZ(85px) translateY(7px);
+  }
+}
+
+@keyframes float-gentle-3 {
+  0%, 100% {
+    transform: translateZ(65px) translateY(0px);
+  }
+  50% {
+    transform: translateZ(65px) translateY(-6px);
+  }
+}
+
+.float-1 {
+  animation: float-gentle-1 4s ease-in-out infinite;
+}
+
+.float-2 {
+  animation: float-gentle-2 5s ease-in-out infinite;
+}
+
+.float-3 {
+  animation: float-gentle-3 4.5s ease-in-out infinite;
+}
+
+/* Pulse glow for buttons and badges */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--spider-red-glow);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(230, 36, 41, 0.75);
+  }
+}
+
+.pulse-red {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+/* Spider-web background rotation / drift */
+@keyframes web-drift {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.03) rotate(1deg);
+  }
+}
+
+.web-graphic {
+  animation: web-drift 12s ease-in-out infinite;
+}

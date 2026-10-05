@@ -1,0 +1,470 @@
+/* ==========================================================================
+   3D PERSONA STAGE & CAROUSEL (INSPIRED BY REFERENCE.MOV)
+   ========================================================================== */
+
+.deck3d-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 1rem auto 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+/* Persona Mode Selector Tabs */
+.deck-mode-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  background: rgba(15, 21, 35, 0.7);
+  padding: 0.4rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+}
+
+.mode-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.mode-tab-btn.active {
+  background: var(--spider-red);
+  color: #ffffff;
+  box-shadow: 0 4px 16px var(--spider-red-glow);
+}
+
+.mode-tab-btn:not(.active):hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 3D Viewport Stage */
+.deck3d-stage-wrapper {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck3d-stage {
+  position: relative;
+  width: 380px;
+  height: 500px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+/* Base Card Style */
+.deck-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  padding: 1.6rem 1.4rem 1.2rem;
+  transform-style: preserve-3d;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  cursor: grab;
+  transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1), opacity 0.5s ease;
+  will-change: transform, opacity;
+  overflow: visible;
+}
+
+.deck-card:active {
+  cursor: grabbing;
+}
+
+/* 3D Carousel Positioning States */
+.deck-card.is-active {
+  transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.deck-card.is-prev {
+  transform: translate3d(-105%, 0, -180px) rotateY(26deg) scale(0.86);
+  opacity: 0.55;
+  pointer-events: auto;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.deck-card.is-next {
+  transform: translate3d(105%, 0, -180px) rotateY(-26deg) scale(0.86);
+  opacity: 0.55;
+  pointer-events: auto;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.deck-card.is-hidden {
+  transform: translate3d(0, 0, -350px) scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Card Theme 1: Hero Suite (Crimson & Spider Navy) */
+.card-theme-hero {
+  background: linear-gradient(155deg, #123C69 0%, #0B6E76 50%, #A8123D 100%);
+  border: 1px solid rgba(242, 236, 223, 0.15);
+}
+
+/* Card Theme 2: System Architect (Slate, Deep Navy & Teal) */
+.card-theme-architect {
+  background: linear-gradient(155deg, #10191A 0%, #123C69 50%, #0B6E76 100%);
+  border: 1px solid rgba(242, 236, 223, 0.15);
+}
+
+/* Card Theme 3: Motion & Creative (Warm Terracotta, Crimson & Orange) */
+.card-theme-creative {
+  background: linear-gradient(155deg, #FF5A00 0%, #A8123D 50%, #123C69 100%);
+  border: 1px solid rgba(242, 236, 223, 0.15);
+}
+
+/* Card Top Title Banner (from video: "June's Chrome", "Mary's Chrome") */
+.deck-card-header {
+  transform: translateZ(40px);
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.deck-card-user {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.deck-card-subtitle {
+  font-family: var(--font-comic);
+  font-size: 1.15rem;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* Central Character Avatar Cutout */
+.deck-avatar-stage {
+  position: relative;
+  width: 165px;
+  height: 165px;
+  transform: translateZ(65px);
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.6rem 0;
+}
+
+.deck-avatar-disc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+  background: #0f172a;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.deck-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-spring);
+}
+
+.deck-avatar-mask-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-spring);
+}
+
+.deck-avatar-stage:hover .deck-avatar-mask-img,
+.deck-card.is-mask-active .deck-avatar-mask-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.deck-avatar-stage:hover .deck-avatar-img,
+.deck-card.is-mask-active .deck-avatar-img {
+  opacity: 0;
+}
+
+/* Card Footer Badge (like the "Chrome" capsule in video) */
+.deck-card-footer {
+  transform: translateZ(45px);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.55rem 2rem;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+/* Floating Breakout Widgets (Z-Plane Depth from Reference.MOV) */
+.floating-widget {
+  position: absolute;
+  transform-style: preserve-3d;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f172a;
+  border-radius: 16px;
+  padding: 0.5rem 0.85rem;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.floating-widget:hover {
+  transform: translateZ(95px) scale(1.06) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Widget Positions around the card - Frame the card cleanly */
+.widget-top-left {
+  top: 10%;
+  left: -52px;
+  transform: translateZ(75px);
+}
+
+.widget-top-right {
+  top: 12%;
+  right: -56px;
+  transform: translateZ(85px);
+}
+
+.widget-mid-left {
+  top: 48%;
+  left: -58px;
+  transform: translateZ(65px);
+}
+
+.widget-mid-right {
+  top: 46%;
+  right: -52px;
+  transform: translateZ(75px);
+}
+
+.widget-bottom-left {
+  bottom: 8%;
+  left: -42px;
+  transform: translateZ(80px);
+}
+
+.widget-bottom-right {
+  bottom: 10%;
+  right: -46px;
+  transform: translateZ(70px);
+}
+
+/* Mini visual thumbnail widget (like the blue bag, sweater, sneaker in video) */
+.widget-mini-card {
+  width: 95px;
+  height: 90px;
+  padding: 0.4rem;
+  border-radius: 18px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.widget-mini-card img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.widget-mini-card span {
+  font-size: 0.7rem;
+  color: #334155;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.widget-icon-pill {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--spider-red);
+  color: #fff;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.widget-icon-pill.blue {
+  background: var(--spider-blue);
+}
+
+.widget-icon-pill.emerald {
+  background: #10b981;
+}
+
+.widget-icon-pill.amber {
+  background: #f59e0b;
+}
+
+/* 3D Navigation Controls */
+.deck-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s var(--ease-spring);
+  z-index: 30;
+}
+
+.deck-nav-btn:hover {
+  background: var(--spider-red);
+  border-color: var(--spider-red);
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 12px 30px var(--spider-red-glow);
+}
+
+.deck-nav-prev {
+  left: 20px;
+}
+
+.deck-nav-next {
+  right: 20px;
+}
+
+/* Pagination Dots */
+.deck-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.deck-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-spring);
+}
+
+.deck-dot.active {
+  width: 28px;
+  background: var(--spider-red);
+  box-shadow: 0 0 12px var(--spider-red-glow);
+}
+
+.deck-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .deck3d-stage-wrapper {
+    height: 480px;
+  }
+  .deck3d-stage {
+    width: 320px;
+    height: 440px;
+  }
+  .deck-card {
+    border-radius: 28px;
+    padding: 1.4rem 1rem;
+  }
+  .deck-avatar-stage {
+    width: 140px;
+    height: 140px;
+  }
+  .floating-widget {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.65rem;
+  }
+  .widget-top-left {
+    left: -12px;
+  }
+  .widget-top-right {
+    right: -12px;
+  }
+  .widget-mid-left {
+    left: -16px;
+  }
+  .widget-mid-right {
+    right: -16px;
+  }
+  .deck-nav-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+}

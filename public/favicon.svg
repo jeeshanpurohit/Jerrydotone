@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="50" cy="52" rx="42" ry="46" fill="url(#grad)" stroke="#111827" stroke-width="4"/>
+  <!-- Web lines on mask -->
+  <path d="M50 6 L50 98 M8 52 L92 52 M19 20 L81 84 M19 84 L81 20" stroke="#111827" stroke-width="2" opacity="0.65"/>
+  <!-- Eyes -->
+  <path d="M22 36 C28 32, 44 42, 44 54 C34 56, 20 48, 22 36 Z" fill="#ffffff" stroke="#111827" stroke-width="4"/>
+  <path d="M78 36 C72 32, 56 42, 56 54 C66 56, 80 48, 78 36 Z" fill="#ffffff" stroke="#111827" stroke-width="4"/>
+</svg>

@@ -1,0 +1,822 @@
+[
+  {
+    "id": "gd-flyers_cleopatra_02_jan",
+    "title": "Cleopatra: 02 JAN",
+    "client": "Cleopatra",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_cleopatra_02_jan.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "CLEOPATRA"
+    ]
+  },
+  {
+    "id": "gd-flyers_cleopatra_21_dec",
+    "title": "Cleopatra: 21 DEC",
+    "client": "Cleopatra",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_cleopatra_21_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "CLEOPATRA"
+    ]
+  },
+  {
+    "id": "gd-flyers_cleopatra_27_dec",
+    "title": "Cleopatra: 27 DEC",
+    "client": "Cleopatra",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_cleopatra_27_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "CLEOPATRA"
+    ]
+  },
+  {
+    "id": "gd-flyers_cleopatra_28_dec",
+    "title": "Cleopatra: 28 DEC",
+    "client": "Cleopatra",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_cleopatra_28_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "CLEOPATRA"
+    ]
+  },
+  {
+    "id": "gd-flyers_kreq_1st_march_2026",
+    "title": "Kreq: 1ST MARCH 2026",
+    "client": "Kreq",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_kreq_1st_march_2026.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "KREQ"
+    ]
+  },
+  {
+    "id": "gd-flyers_kreq_kreq_12th_march",
+    "title": "Kreq: KREQ 12TH MARCH",
+    "client": "Kreq",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_kreq_kreq_12th_march.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "KREQ"
+    ]
+  },
+  {
+    "id": "gd-flyers_kreq_kreq_28th_feb",
+    "title": "Kreq: kreq 28th feb",
+    "client": "Kreq",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_kreq_kreq_28th_feb.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "KREQ"
+    ]
+  },
+  {
+    "id": "gd-flyers_kreq_kreq_7th_march",
+    "title": "Kreq: KREQ 7TH MARCH",
+    "client": "Kreq",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_kreq_kreq_7th_march.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "KREQ"
+    ]
+  },
+  {
+    "id": "gd-flyers_mencave_31st_january_mencave",
+    "title": "Mencave: 31st January Mencave",
+    "client": "Mencave",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_mencave_31st_january_mencave.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "MENCAVE"
+    ]
+  },
+  {
+    "id": "gd-flyers_mencave_mencave_03_03_26",
+    "title": "Mencave: MENCAVE 03-03-26",
+    "client": "Mencave",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_mencave_mencave_03_03_26.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "MENCAVE"
+    ]
+  },
+  {
+    "id": "gd-flyers_mencave_mencave_1st_february",
+    "title": "Mencave: Mencave 1st February",
+    "client": "Mencave",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_mencave_mencave_1st_february.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "MENCAVE"
+    ]
+  },
+  {
+    "id": "gd-flyers_mencave_mencave_30th_january_1",
+    "title": "Mencave: Mencave 30th January - 1",
+    "client": "Mencave",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_mencave_mencave_30th_january_1.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "MENCAVE"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_beagles",
+    "title": "New Year Flyers: BEAGLES",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_beagles.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_bogen",
+    "title": "New Year Flyers: BOGEN",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_bogen.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_cleopatra",
+    "title": "New Year Flyers: CLEOPATRA",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_cleopatra.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_crown_crest",
+    "title": "New Year Flyers: CROWN CREST",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_crown_crest.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_kreq",
+    "title": "New Year Flyers: KREQ",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_kreq.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_mencave",
+    "title": "New Year Flyers: MENCAVE",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_mencave.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_novotel",
+    "title": "New Year Flyers: NOVOTEL",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_novotel.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_olive_court",
+    "title": "New Year Flyers: OLIVE COURT",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_olive_court.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_saga",
+    "title": "New Year Flyers: SAGA",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_saga.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_skydeck",
+    "title": "New Year Flyers: SKYDECK",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_skydeck.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_new_year_flyers_zostel",
+    "title": "New Year Flyers: ZOSTEL",
+    "client": "New Year Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_new_year_flyers_zostel.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "NEW YEAR FLYERS"
+    ]
+  },
+  {
+    "id": "gd-flyers_olive_court_12_dec",
+    "title": "Olive Court: 12 DEC",
+    "client": "Olive Court",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_olive_court_12_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "OLIVE COURT"
+    ]
+  },
+  {
+    "id": "gd-flyers_olive_court_16_dec",
+    "title": "Olive Court: 16 DEC",
+    "client": "Olive Court",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_olive_court_16_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "OLIVE COURT"
+    ]
+  },
+  {
+    "id": "gd-flyers_olive_court_18th_nov",
+    "title": "Olive Court: 18th NOV",
+    "client": "Olive Court",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_olive_court_18th_nov.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "OLIVE COURT"
+    ]
+  },
+  {
+    "id": "gd-flyers_olive_court_25th_nov",
+    "title": "Olive Court: 25th NOV",
+    "client": "Olive Court",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_olive_court_25th_nov.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "OLIVE COURT"
+    ]
+  },
+  {
+    "id": "gd-flyers_saga_05_dec",
+    "title": "Saga: 05 DEC",
+    "client": "Saga",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_saga_05_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "SAGA"
+    ]
+  },
+  {
+    "id": "gd-flyers_saga_14_dec",
+    "title": "Saga: 14 DEC",
+    "client": "Saga",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_saga_14_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "SAGA"
+    ]
+  },
+  {
+    "id": "gd-flyers_saga_18_dec",
+    "title": "Saga: 18 DEC",
+    "client": "Saga",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_saga_18_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "SAGA"
+    ]
+  },
+  {
+    "id": "gd-flyers_saga_22_dec",
+    "title": "Saga: 22 DEC",
+    "client": "Saga",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_saga_22_dec.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "SAGA"
+    ]
+  },
+  {
+    "id": "gd-flyers_sports_flyers_india_vs_pak_ravora",
+    "title": "Sports Flyers: INDIA VS PAK RAVORA",
+    "client": "Sports Flyers",
+    "category": "graphic-design",
+    "subCategory": "Flyers",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/flyers_sports_flyers_india_vs_pak_ravora.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "FLYERS",
+      "SPORTS FLYERS"
+    ]
+  },
+  {
+    "id": "gd-instagram_posts_kreq_post_6",
+    "title": "Kreq: POST - 6",
+    "client": "Kreq",
+    "category": "graphic-design",
+    "subCategory": "Instagram Posts",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/instagram_posts_kreq_post_6.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "INSTAGRAM POSTS",
+      "KREQ"
+    ]
+  },
+  {
+    "id": "gd-instagram_posts_meadows_post_2",
+    "title": "Meadows: POST - 2",
+    "client": "Meadows",
+    "category": "graphic-design",
+    "subCategory": "Instagram Posts",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/instagram_posts_meadows_post_2.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "INSTAGRAM POSTS",
+      "MEADOWS"
+    ]
+  },
+  {
+    "id": "gd-instagram_posts_mencave_post_6",
+    "title": "Mencave: POST - 6",
+    "client": "Mencave",
+    "category": "graphic-design",
+    "subCategory": "Instagram Posts",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/instagram_posts_mencave_post_6.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "INSTAGRAM POSTS",
+      "MENCAVE"
+    ]
+  },
+  {
+    "id": "gd-instagram_posts_the_drop_culture_early_bird_1",
+    "title": "The Drop Culture: EARLY BIRD 1",
+    "client": "The Drop Culture",
+    "category": "graphic-design",
+    "subCategory": "Instagram Posts",
+    "type": "Graphic Design",
+    "image": "/assets/projects/graphic-design/instagram_posts_the_drop_culture_early_bird_1.webp",
+    "tags": [
+      "GRAPHIC DESIGN",
+      "INSTAGRAM POSTS",
+      "THE DROP CULTURE"
+    ]
+  },
+  {
+    "id": "photo-photo_dsc_0832",
+    "title": "Architecture & Street RAW // DSC_0832",
+    "client": "jerrydotdng Archive",
+    "category": "photography",
+    "subCategory": "RAW Photography",
+    "type": "Photography",
+    "image": "/assets/projects/photography/photo_dsc_0832.webp",
+    "tags": [
+      "PHOTOGRAPHY",
+      "RAW DNG",
+      "ARCHITECTURE",
+      "STREET"
+    ]
+  },
+  {
+    "id": "photo-photo_dsc_0849",
+    "title": "Architecture & Street RAW // DSC_0849",
+    "client": "jerrydotdng Archive",
+    "category": "photography",
+    "subCategory": "RAW Photography",
+    "type": "Photography",
+    "image": "/assets/projects/photography/photo_dsc_0849.webp",
+    "tags": [
+      "PHOTOGRAPHY",
+      "RAW DNG",
+      "ARCHITECTURE",
+      "STREET"
+    ]
+  },
+  {
+    "id": "photo-photo_dsc_3006",
+    "title": "Architecture & Street RAW // DSC_3006",
+    "client": "jerrydotdng Archive",
+    "category": "photography",
+    "subCategory": "RAW Photography",
+    "type": "Photography",
+    "image": "/assets/projects/photography/photo_dsc_3006.webp",
+    "tags": [
+      "PHOTOGRAPHY",
+      "RAW DNG",
+      "ARCHITECTURE",
+      "STREET"
+    ]
+  },
+  {
+    "id": "photo-photo_dsc_3009",
+    "title": "Architecture & Street RAW // DSC_3009",
+    "client": "jerrydotdng Archive",
+    "category": "photography",
+    "subCategory": "RAW Photography",
+    "type": "Photography",
+    "image": "/assets/projects/photography/photo_dsc_3009.webp",
+    "tags": [
+      "PHOTOGRAPHY",
+      "RAW DNG",
+      "ARCHITECTURE",
+      "STREET"
+    ]
+  },
+  {
+    "id": "vid-video_garv_bhoomi_trivedi",
+    "title": "Garv: BHOOMI TRIVEDI",
+    "client": "Garv",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_garv_bhoomi_trivedi_poster.webp",
+    "video": "/assets/projects/videos/video_garv_bhoomi_trivedi.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "GARV",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_garv_garv_2026_after_film",
+    "title": "Garv: GARV 2026 AFTER-FILM",
+    "client": "Garv",
+    "category": "video-editing",
+    "subCategory": "Festival After-Film",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_garv_garv_2026_after_film_poster.webp",
+    "video": "/assets/projects/videos/video_garv_garv_2026_after_film.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "GARV",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_kreq_fish_eye",
+    "title": "Kreq: FISH EYE",
+    "client": "Kreq",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_kreq_fish_eye_poster.webp",
+    "video": "/assets/projects/videos/video_kreq_fish_eye.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "KREQ",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_kreq_pizza",
+    "title": "Kreq: PIZZA",
+    "client": "Kreq",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_kreq_pizza_poster.webp",
+    "video": "/assets/projects/videos/video_kreq_pizza.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "KREQ",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_meadows_ambiance",
+    "title": "Meadows: AMBIANCE",
+    "client": "Meadows",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_meadows_ambiance_poster.webp",
+    "video": "/assets/projects/videos/video_meadows_ambiance.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "MEADOWS",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_meadows_meadows_bts",
+    "title": "Meadows: MEADOWS BTS",
+    "client": "Meadows",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_meadows_meadows_bts_poster.webp",
+    "video": "/assets/projects/videos/video_meadows_meadows_bts.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "MEADOWS",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_mencave_taxi",
+    "title": "Mencave: TAXI",
+    "client": "Mencave",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_mencave_taxi_poster.webp",
+    "video": "/assets/projects/videos/video_mencave_taxi.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "MENCAVE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_mencave_tripod",
+    "title": "Mencave: TRIPOD",
+    "client": "Mencave",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_mencave_tripod_poster.webp",
+    "video": "/assets/projects/videos/video_mencave_tripod.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "MENCAVE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_ravora_ambiance",
+    "title": "Ravora: AMBIANCE",
+    "client": "Ravora",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_ravora_ambiance_poster.webp",
+    "video": "/assets/projects/videos/video_ravora_ambiance.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "RAVORA",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_ravora_jutsu",
+    "title": "Ravora: JUTSU",
+    "client": "Ravora",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_ravora_jutsu_poster.webp",
+    "video": "/assets/projects/videos/video_ravora_jutsu.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "RAVORA",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_drop_culture_2_days_to_go",
+    "title": "The Drop Culture: 2 DAYS TO GO",
+    "client": "The Drop Culture",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_drop_culture_2_days_to_go_poster.webp",
+    "video": "/assets/projects/videos/video_the_drop_culture_2_days_to_go.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE DROP CULTURE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_drop_culture_24_hours_to_go",
+    "title": "The Drop Culture: 24 HOURS TO GO",
+    "client": "The Drop Culture",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_drop_culture_24_hours_to_go_poster.webp",
+    "video": "/assets/projects/videos/video_the_drop_culture_24_hours_to_go.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE DROP CULTURE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_drop_culture_parmish_poster_reveal",
+    "title": "The Drop Culture: PARMISH POSTER REVEAL",
+    "client": "The Drop Culture",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_drop_culture_parmish_poster_reveal_poster.webp",
+    "video": "/assets/projects/videos/video_the_drop_culture_parmish_poster_reveal.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE DROP CULTURE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_drop_culture_parmish_reveal",
+    "title": "The Drop Culture: PARMISH REVEAL",
+    "client": "The Drop Culture",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_drop_culture_parmish_reveal_poster.webp",
+    "video": "/assets/projects/videos/video_the_drop_culture_parmish_reveal.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE DROP CULTURE",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_social_chutney_see_you_tomorrow",
+    "title": "The Social Chutney: SEE YOU TOMORROW",
+    "client": "The Social Chutney",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_social_chutney_see_you_tomorrow_poster.webp",
+    "video": "/assets/projects/videos/video_the_social_chutney_see_you_tomorrow.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE SOCIAL CHUTNEY",
+      "AFTER EFFECTS"
+    ]
+  },
+  {
+    "id": "vid-video_the_social_chutney_tsc_fire",
+    "title": "The Social Chutney: TSC FIRE",
+    "client": "The Social Chutney",
+    "category": "video-editing",
+    "subCategory": "Commercial Video",
+    "type": "Video Editing",
+    "image": "/assets/projects/video-posters/video_the_social_chutney_tsc_fire_poster.webp",
+    "video": "/assets/projects/videos/video_the_social_chutney_tsc_fire.mp4",
+    "tags": [
+      "COMMERCIAL VIDEO",
+      "PREMIERE PRO",
+      "THE SOCIAL CHUTNEY",
+      "AFTER EFFECTS"
+    ]
+  }
+]

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   JEESHAN PUROHIT - MINIMALIST DESIGN SYSTEM TOKENS
+   The 3-Font System & 6-Color Palette with Spacious, Clean Architecture
+   ========================================================================== */
+
+:root {
+  /* The 6-Color Palette */
+  --primary: #FF5A00;          /* Vivid Orange */
+  --primary-glow: rgba(255, 90, 0, 0.35);
+  --primary-subtle: rgba(255, 90, 0, 0.08);
+
+  --secondary: #0B6E76;        /* Bold Deep Teal */
+  --secondary-glow: rgba(11, 110, 118, 0.3);
+  --secondary-light: #14939e;
+  --secondary-subtle: rgba(11, 110, 118, 0.08);
+
+  --tertiary: #A8123D;         /* Deep Magenta / Crimson */
+  --tertiary-glow: rgba(168, 18, 61, 0.3);
+
+  --accent: #123C69;           /* Deep Navy */
+  --accent-glow: rgba(18, 60, 105, 0.3);
+
+  --near-black: #10191A;       /* Canvas Surface Background */
+  --near-black-card: #142021;   /* Clean Minimal Card */
+  --near-black-card-hover: #192a2b;
+
+  --near-white: #F2ECDF;       /* Clean Cream Typography */
+  --near-white-muted: rgba(242, 236, 223, 0.65);
+  --near-white-faint: rgba(242, 236, 223, 0.06);
+
+  --border-minimal: rgba(242, 236, 223, 0.07);
+  --border-hover: rgba(255, 90, 0, 0.35);
+
+  /* The 3-Font System */
+  --font-sans: 'Arimo', sans-serif;
+  --font-grotesque: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-script: 'Pinyon Script', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing & Radii (Crisp Architectural Geometry) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-morph: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--near-black);
+  color: var(--near-white);
+}
+
+body {
+  background-color: var(--near-black);
+  color: var(--near-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--near-black);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--near-black);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(242, 236, 223, 0.15);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
