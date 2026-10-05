@@ -181,7 +181,7 @@ export function Navbar({ theme, toggleTheme }) {
             </Link>
           </li>
         ))}
-        {/* Mobile-only contact & audio toggle in menu drawer */}
+        {/* Mobile-only contact, voice AI, & audio toggle in menu drawer */}
         <li className="sp-nav-mobile-contact-item">
           <Link
             to="/contact"
@@ -192,6 +192,19 @@ export function Navbar({ theme, toggleTheme }) {
             CONTACT
           </Link>
         </li>
+        <li className="sp-nav-mobile-voice-item">
+          <button
+            type="button"
+            className="sp-nav-mobile-voice-btn"
+            onClick={() => {
+              setMenuOpen(false);
+              window.dispatchEvent(new CustomEvent("open-voice-assistant", { detail: { autoListen: true } }));
+            }}
+          >
+            <span style={{ color: "var(--brand-primary, #FF5A00)", marginRight: "0.6rem" }}>●</span>
+            TALK WITH JERRY (VOICE AI)
+          </button>
+        </li>
         <li className="sp-nav-mobile-audio">
           <AudioToggle />
         </li>
@@ -199,6 +212,22 @@ export function Navbar({ theme, toggleTheme }) {
 
       {/* Nav Right Controls */}
       <div className="sp-nav-right">
+        <button
+          type="button"
+          className="btn-nav-voice-ai"
+          onClick={() => {
+            window.dispatchEvent(new CustomEvent("open-voice-assistant", { detail: { autoListen: true } }));
+          }}
+          title="Talk with Jerry (AI Voice Assistant)"
+          aria-label="Open AI Voice Assistant"
+        >
+          <span className="nav-voice-eq">
+            <span className="nav-voice-bar vb-1" />
+            <span className="nav-voice-bar vb-2" />
+            <span className="nav-voice-bar vb-3" />
+          </span>
+          <span className="nav-voice-label">JERRY AI</span>
+        </button>
         <Link
           to="/contact"
           className="sp-nav-contact-btn"

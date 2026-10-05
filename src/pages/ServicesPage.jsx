@@ -575,12 +575,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(300px, 1fr) minmax(300px, 380px)",
-            gap: "2.5rem",
-            alignItems: "start"
-          }}>
+          <div className="sp-services-layout-grid">
             {/* Checklist of Available Deliverables */}
             <div>
               <div style={{

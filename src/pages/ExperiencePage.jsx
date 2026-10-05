@@ -313,16 +313,7 @@ export function ExperiencePage() {
         </div>
 
         {/* ── INTERACTIVE SPLIT DOSSIER INSPECTOR & TIMELINE ────────────────── */}
-        <div style={{
-          maxWidth: '1200px',
-          margin: '3rem auto 0',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 440px) minmax(340px, 1fr)',
-          gap: '2rem',
-          alignItems: 'start',
-          position: 'relative',
-          zIndex: 1
-        }}>
+        <div className="sp-experience-layout-grid">
           {/* Left Column: Interactive Timeline Navigation Stream */}
           <div style={{
             display: 'flex',

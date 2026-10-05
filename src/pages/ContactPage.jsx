@@ -86,23 +86,25 @@ export function ContactPage() {
           </p>
 
           {/* Quick Target Mail Banner */}
-          <div style={{
+          <div className="sp-contact-dest-banner" style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.6rem',
             marginTop: '1.8rem',
             background: 'var(--card-bg)',
             border: '1px solid var(--border-card)',
-            padding: '0.45rem 1rem',
+            padding: '0.5rem 1rem',
             borderRadius: '4px',
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.78rem'
+            fontSize: '0.78rem',
+            flexWrap: 'wrap',
+            maxWidth: '100%'
           }}>
             <span style={{ color: 'var(--red)' }}>●</span>
             <span style={{ color: 'var(--text-muted)' }}>PRIMARY WORKSPACE DESTINATION:</span>
             <a
               href={`mailto:${JEESHAN_PRIMARY_EMAIL}`}
-              style={{ color: 'var(--brand-primary)', fontWeight: 800, textDecoration: 'none' }}
+              style={{ color: 'var(--brand-primary)', fontWeight: 800, textDecoration: 'none', wordBreak: 'break-all' }}
             >
               {JEESHAN_PRIMARY_EMAIL}
             </a>
@@ -110,16 +112,7 @@ export function ContactPage() {
         </div>
 
         {/* ── MAIN WORKSPACE & FORM SECTION ─────────────────────────────────── */}
-        <div style={{
-          maxWidth: '1200px',
-          margin: '3rem auto 0',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 400px) minmax(340px, 1fr)',
-          gap: '2.5rem',
-          alignItems: 'start',
-          position: 'relative',
-          zIndex: 1
-        }}>
+        <div className="sp-contact-layout-grid">
           {/* Left Column: Direct Communication Channels */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {/* Email Channel */}

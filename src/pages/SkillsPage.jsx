@@ -487,16 +487,18 @@ export default function SkillsPage() {
             </div>
 
             {/* Secondary Tier Filter Filter */}
-            <div style={{
+            <div className="sp-skills-tier-filter-row" style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              gap: "0.75rem",
+              flexWrap: "wrap",
+              gap: "0.5rem",
               fontSize: "0.75rem",
               fontFamily: "var(--font-mono)",
-              color: "var(--text-muted)"
+              color: "var(--text-muted)",
+              marginTop: "0.4rem"
             }}>
-              <span>PROFICIENCY TIER:</span>
+              <span style={{ marginRight: "0.2rem" }}>PROFICIENCY TIER:</span>
               {[
                 { id: "all", label: "ALL" },
                 { id: "mastery", label: "MASTERY (95%+)" },
@@ -512,9 +514,9 @@ export default function SkillsPage() {
                   style={{
                     background: tierFilter === tier.id ? "rgba(255, 90, 0, 0.15)" : "transparent",
                     color: tierFilter === tier.id ? "var(--red)" : "var(--text-muted)",
-                    border: `1px solid ${tierFilter === tier.id ? "var(--red)" : "transparent"}`,
-                    padding: "0.2rem 0.6rem",
-                    borderRadius: "2px",
+                    border: `1px solid ${tierFilter === tier.id ? "var(--red)" : "rgba(255, 255, 255, 0.08)"}`,
+                    padding: "0.25rem 0.65rem",
+                    borderRadius: "3px",
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.7rem",
                     fontWeight: 700,
@@ -529,16 +531,7 @@ export default function SkillsPage() {
         </div>
 
         {/* ── SPLIT ARSENAL GRID & INTERACTIVE INSPECTOR HUD ──────────────────── */}
-        <div style={{
-          maxWidth: "1200px",
-          margin: "3rem auto 0",
-          display: "grid",
-          gridTemplateColumns: "minmax(320px, 1fr) minmax(320px, 420px)",
-          gap: "2rem",
-          alignItems: "start",
-          position: "relative",
-          zIndex: 1
-        }}>
+        <div className="sp-skills-layout-grid">
           {/* Left Column: Interactive Skill Matrix Grid */}
           <div>
             <div style={{

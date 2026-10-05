@@ -1,95 +1,255 @@
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS & MOBILE NAVIGATION
+   JEESHAN PUROHIT — MASTER RESPONSIVE STYLESHEET
+   Mobile-first polish, touch ergonomics, and safe horizontal bounding
    ========================================================================== */
 
+/* Universal mobile viewport safety */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Touch device ergonomics: Disable custom reticles that interfere with touch */
+@media (pointer: coarse) {
+  .sp-hero-reticle,
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
+}
+
+/* ── TABLETS & MEDIUM VIEWPORTS (<= 1024px) ────────────────────────────────── */
 @media (max-width: 1024px) {
-  .navbar {
-    padding: 1rem 2rem;
-  }
-  .about-grid {
+  .sp-about-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .about-avatar-wrapper {
-    order: -1;
-  }
-  .projects-grid {
+  .sp-skills-grid,
+  .sp-projects-grid {
     grid-template-columns: 1fr;
   }
   .spydy-standing-decor {
     display: none;
   }
+  .sp-hero-img-wrap {
+    width: 60%;
+  }
 }
 
+/* ── MOBILE SCREENS & SMALL TABLETS (<= 768px) ────────────────────────────── */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.8rem 1.5rem;
+  :root {
+    --section-gap: 3rem;
   }
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background: rgba(10, 13, 20, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 6rem 2rem 2rem;
-    gap: 1.5rem;
-    transition: right 0.4s var(--ease-smooth);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-    border-left: 1px solid var(--border-glass);
-    z-index: 105;
-  }
-  .nav-links.mobile-open {
-    right: 0;
-  }
-  .mobile-menu-btn {
-    display: block;
-    z-index: 110;
-  }
-  .hero-section {
-    padding: 6rem 1rem 3rem;
-  }
-  .hero-title {
-    font-size: 3.2rem;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .about-stats-grid {
-    grid-template-columns: 1fr;
-  }
-  .spydy-hanging-decor {
-    width: 90px;
-    top: -40px;
-    right: 0;
-  }
-  .contact-wrapper {
-    padding: 1.8rem 1.2rem;
-  }
-  .about-avatar-container {
-    width: 280px;
-    height: 280px;
-  }
-}
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.7rem;
+  /* Typography Fluid Scaling */
+  h1, .sp-hero-name {
+    font-size: clamp(2.8rem, 11vw, 4.8rem) !important;
+    line-height: 0.95 !important;
   }
-  .hero-cta-group {
+
+  .sp-section-title {
+    font-size: clamp(1.9rem, 7.5vw, 2.8rem) !important;
+  }
+
+  .sp-eyebrow {
+    font-size: 0.68rem !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  /* Hero Section */
+  .sp-hero {
+    min-height: auto;
+    padding: calc(var(--nav-h, 60px) + 2rem) 1.2rem 3rem !important;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sp-hero-content {
+    padding: 0 !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sp-hero-tagline {
+    font-size: 0.72rem !important;
+    letter-spacing: 1.8px !important;
+    margin-bottom: 0.8rem;
+  }
+
+  .sp-hero-btns {
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
+    gap: 0.75rem;
   }
-  .btn-primary-spider, .btn-secondary-spider {
+
+  .sp-hero-btns .sp-btn-red,
+  .sp-hero-btns .sp-btn-dark {
     width: 100%;
+    text-align: center;
     justify-content: center;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.8rem;
   }
-  .deck-mode-tabs {
+
+  .sp-hero-img-wrap {
+    width: 100% !important;
+    max-width: 340px;
+    height: 380px !important;
+    min-height: 340px !important;
+    margin: 2rem auto 0;
+  }
+
+  .sp-web-tl, .sp-web-br {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  /* Section Spacing & Padding */
+  .sp-section {
+    padding: 3rem 1.2rem !important;
+  }
+
+  .sp-page-wrap {
+    padding-top: 56px;
+  }
+
+  /* Form & Interactive Panels */
+  .sp-contact-layout-grid,
+  .sp-skills-layout-grid,
+  .sp-services-layout-grid,
+  .sp-experience-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.8rem !important;
+    margin-top: 2rem !important;
+  }
+
+  .form-row,
+  .sp-contact-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Booking & Inquiries Form */
+  .sp-booking-card,
+  .sp-contact-form-container {
+    padding: 1.4rem 1.1rem !important;
+  }
+
+  /* Footer */
+  .sp-footer {
+    padding: 3rem 1.2rem 2rem !important;
+  }
+
+  .sp-footer-inner {
+    flex-direction: column;
+    gap: 1.8rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .sp-footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sp-footer-links {
     flex-wrap: wrap;
     justify-content: center;
-    border-radius: var(--radius-md);
+    gap: 1rem 1.5rem;
+  }
+
+  .sp-footer-links a,
+  .sp-footer-links button {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ── SMALL PHONES (<= 480px) ──────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* Ultra-compact padding for standard small phone bounds (360px - 390px) */
+  .sp-nav {
+    padding: 0 0.85rem !important;
+  }
+
+  .sp-section {
+    padding: 2.5rem 0.9rem !important;
+  }
+
+  .sp-section-title {
+    font-size: clamp(1.75rem, 8vw, 2.4rem) !important;
+  }
+
+  .sp-stat-card {
+    padding: 1rem !important;
+  }
+
+  .sp-stat-value {
+    font-size: 2.2rem !important;
+  }
+
+  .sp-stat-label {
+    font-size: 0.68rem !important;
+  }
+
+  /* Modals: Calendar & Clock Popups */
+  .sp-popup-modal-card {
+    padding: 1.1rem !important;
+    max-width: 95vw !important;
+  }
+
+  /* Jerry AI HUD Modal on compact mobile */
+  .va-hud-panel {
+    padding: 1rem !important;
+    gap: 0.8rem !important;
+    max-height: calc(100vh - 1rem) !important;
+  }
+
+  .va-hud-header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .va-hud-brand-mark {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .va-hud-title {
+    font-size: 0.72rem !important;
+  }
+
+  .va-hud-sub {
+    font-size: 0.6rem !important;
+  }
+
+  .va-text-input-bar {
+    flex-direction: row;
+    gap: 0.4rem;
+  }
+
+  .va-input-field {
+    font-size: 0.75rem !important;
+    padding: 0.55rem 0.7rem !important;
+  }
+
+  .va-send-btn {
+    font-size: 0.68rem !important;
+    padding: 0.55rem 0.75rem !important;
+  }
+
+  /* Marquee ticker on small phones */
+  .sp-marquee-wrap {
+    padding: 0.6rem 0;
+  }
+  .sp-marquee-item {
+    font-size: 0.7rem;
+    padding: 0 1.2rem;
   }
 }

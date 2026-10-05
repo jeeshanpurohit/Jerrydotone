@@ -364,6 +364,24 @@ export default function HomePage() {
           className="sp-hero-img-wrap"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => { setHovered(false); setCursor({ x: -9999, y: -9999, relX: -9999, relY: -9999 }); }}
+          onTouchStart={(e) => {
+            if (e.touches && e.touches[0] && containerRef.current) {
+              const touch = e.touches[0];
+              const rect = containerRef.current.getBoundingClientRect();
+              setHovered(true);
+              setCursor({ x: touch.clientX, y: touch.clientY, relX: touch.clientX - rect.left, relY: touch.clientY - rect.top });
+            }
+          }}
+          onTouchMove={(e) => {
+            if (e.touches && e.touches[0] && containerRef.current) {
+              const touch = e.touches[0];
+              const rect = containerRef.current.getBoundingClientRect();
+              setCursor({ x: touch.clientX, y: touch.clientY, relX: touch.clientX - rect.left, relY: touch.clientY - rect.top });
+            }
+          }}
+          onTouchEnd={() => {
+            setHovered(false);
+          }}
         >
           <img
             src={DATA.faceImg}
