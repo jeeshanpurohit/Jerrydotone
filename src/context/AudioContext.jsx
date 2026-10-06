@@ -32,6 +32,19 @@ const AudioCtx = createContext({
   playCardHover: () => {}
 });
 
+// Singleton HTMLAudioElement for background music — persists across re-renders
+let _bgmAudio = null;
+
+function getBgmAudio() {
+  if (!_bgmAudio && typeof window !== "undefined") {
+    _bgmAudio = new Audio("/assets/bgm.m4a");
+    _bgmAudio.loop = true;
+    _bgmAudio.volume = 0.25;
+    _bgmAudio.preload = "auto";
+  }
+  return _bgmAudio;
+}
+
 export function AudioProvider({ children }) {
   const [audioEnabled, setAudioEnabledState] = useState(() => {
     try {
@@ -42,6 +55,7 @@ export function AudioProvider({ children }) {
   });
 
   const ambientNodesRef = useRef(null);
+  const bgmFadeRef = useRef(null);
 
   // Synchronize global flag
   useEffect(() => {
@@ -51,7 +65,71 @@ export function AudioProvider({ children }) {
     } catch {}
   }, [audioEnabled]);
 
-  // Master ambient soundscape controller
+  // Background music controller — fade in/out based on audioEnabled
+  useEffect(() => {
+    const bgm = getBgmAudio();
+    if (!bgm) return;
+
+    // Clear any ongoing fade
+    if (bgmFadeRef.current) {
+      clearInterval(bgmFadeRef.current);
+      bgmFadeRef.current = null;
+    }
+
+    if (audioEnabled) {
+      // Ensure AudioContext is resumed (browser policy)
+      getAudioContextInstance();
+
+      const targetVolume = 0.25;
+      bgm.volume = 0;
+
+      const playPromise = bgm.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay blocked — will play on first user interaction
+          const resumeOnInteraction = () => {
+            bgm.play().catch(() => {});
+            document.removeEventListener("click", resumeOnInteraction);
+            document.removeEventListener("keydown", resumeOnInteraction);
+          };
+          document.addEventListener("click", resumeOnInteraction, { once: true });
+          document.addEventListener("keydown", resumeOnInteraction, { once: true });
+        });
+      }
+
+      // Fade in
+      let currentVol = 0;
+      bgmFadeRef.current = setInterval(() => {
+        currentVol = Math.min(currentVol + 0.01, targetVolume);
+        bgm.volume = currentVol;
+        if (currentVol >= targetVolume) {
+          clearInterval(bgmFadeRef.current);
+          bgmFadeRef.current = null;
+        }
+      }, 60);
+    } else {
+      // Fade out then pause
+      let currentVol = bgm.volume;
+      bgmFadeRef.current = setInterval(() => {
+        currentVol = Math.max(currentVol - 0.01, 0);
+        bgm.volume = currentVol;
+        if (currentVol <= 0) {
+          clearInterval(bgmFadeRef.current);
+          bgmFadeRef.current = null;
+          bgm.pause();
+        }
+      }, 60);
+    }
+
+    return () => {
+      if (bgmFadeRef.current) {
+        clearInterval(bgmFadeRef.current);
+        bgmFadeRef.current = null;
+      }
+    };
+  }, [audioEnabled]);
+
+  // Master ambient soundscape controller (synthesized drone)
   useEffect(() => {
     if (!audioEnabled) {
       // Fade out and stop ambient nodes if running
@@ -255,4 +333,3 @@ export function AudioProvider({ children }) {
 export function useAudioContext() {
   return useContext(AudioCtx);
 }
-
