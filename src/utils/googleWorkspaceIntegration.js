@@ -7,6 +7,7 @@
 import { bookSlot } from "./slotAvailability";
 
 export const JEESHAN_PRIMARY_EMAIL = "jerrydotone@gmail.com";
+export const FORMSUBMIT_TOKEN = "dd702e57ea9d70e6c10bbd640539070c";
 export const STORAGE_KEY = "jeeshan_workspace_queries";
 export const WEBHOOK_URL_KEY = "jeeshan_workspace_webhook_url";
 
@@ -215,7 +216,7 @@ export async function registerQueryInWorkspace({ query, aiAnalysis, webhookUrl =
   // 4. Background Email Dispatch to jerrydotone@gmail.com (Formatted HTML Table)
   let directEmailDispatched = false;
   try {
-    const emailResp = await fetch("https://formsubmit.co/ajax/jerrydotone@gmail.com", {
+    const emailResp = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
