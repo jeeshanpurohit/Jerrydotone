@@ -11,13 +11,17 @@ export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("graphic-design");
   const [isFastSpinning, setIsFastSpinning] = useState(false);
   const [activeMedia, setActiveMedia] = useState(null); // Lightbox modal state
+  const [isMaximized, setIsMaximized] = useState(false);
 
   const carouselRef = useRef(null);
 
   // Close modal on ESC key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") setActiveMedia(null);
+      if (e.key === "Escape") {
+        setActiveMedia(null);
+        setIsMaximized(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -137,15 +141,16 @@ export default function ProjectsPage() {
             style={{
               background: "var(--card-bg)",
               border: "1px solid var(--border-card)",
-              borderRadius: "4px",
-              maxWidth: activeMedia.type === "video" ? "920px" : "680px",
+              borderRadius: "6px",
+              maxWidth: isMaximized ? "96vw" : (activeMedia.type === "video" ? "920px" : "720px"),
               width: "100%",
-              maxHeight: "92vh",
+              maxHeight: isMaximized ? "96vh" : "90vh",
               display: "flex",
               flexDirection: "column",
               overflow: "hidden",
-              boxShadow: "0 10px 40px rgba(0, 0, 0, 0.4)",
-              position: "relative"
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6)",
+              position: "relative",
+              transition: "max-width 0.25s ease, max-height 0.25s ease"
             }}
           >
             {/* Modal Header */}
@@ -153,7 +158,7 @@ export default function ProjectsPage() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              padding: "1rem 1.4rem",
+              padding: "0.9rem 1.4rem",
               borderBottom: "1px solid var(--border-card)"
             }}>
               <div>
@@ -176,25 +181,49 @@ export default function ProjectsPage() {
                   {activeMedia.title}
                 </h3>
               </div>
-              <button
-                onClick={() => setActiveMedia(null)}
-                style={{
-                  background: "rgba(0, 0, 0, 0.08)",
-                  border: "1px solid var(--border-card)",
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "2px",
-                  cursor: "pointer",
-                  color: "var(--text-primary)",
-                  fontSize: "0.95rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.2s"
-                }}
-              >
-                ✕
-              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <button
+                  type="button"
+                  onClick={() => setIsMaximized((v) => !v)}
+                  title={isMaximized ? "Restore default window" : "Expand full screen"}
+                  style={{
+                    background: "rgba(0, 0, 0, 0.08)",
+                    border: "1px solid var(--border-card)",
+                    padding: "0.35rem 0.7rem",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                    color: "var(--text-primary)",
+                    fontSize: "0.72rem",
+                    fontFamily: "var(--font-mono)",
+                    fontWeight: 700
+                  }}
+                >
+                  {isMaximized ? "RESTORE 🗗" : "EXPAND ⛶"}
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveMedia(null);
+                    setIsMaximized(false);
+                  }}
+                  style={{
+                    background: "rgba(0, 0, 0, 0.08)",
+                    border: "1px solid var(--border-card)",
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                    color: "var(--text-primary)",
+                    fontSize: "0.95rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background 0.2s"
+                  }}
+                  aria-label="Close modal"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             {/* Modal Media Body */}
@@ -203,7 +232,7 @@ export default function ProjectsPage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              maxHeight: "68vh",
+              maxHeight: isMaximized ? "80vh" : "66vh",
               overflow: "hidden",
               position: "relative"
             }}>
@@ -216,7 +245,7 @@ export default function ProjectsPage() {
                   playsInline
                   style={{
                     width: "100%",
-                    maxHeight: "68vh",
+                    maxHeight: isMaximized ? "80vh" : "66vh",
                     objectFit: "contain"
                   }}
                 />
@@ -226,16 +255,19 @@ export default function ProjectsPage() {
                   alt={activeMedia.title}
                   style={{
                     maxWidth: "100%",
-                    maxHeight: "68vh",
-                    objectFit: "contain"
+                    maxHeight: isMaximized ? "80vh" : "66vh",
+                    objectFit: "contain",
+                    cursor: isMaximized ? "default" : "zoom-in"
                   }}
+                  onClick={() => !isMaximized && setIsMaximized(true)}
+                  title={isMaximized ? undefined : "Click to expand image full screen"}
                 />
               )}
             </div>
 
             {/* Modal Footer */}
             <div style={{
-              padding: "1rem 1.4rem",
+              padding: "0.9rem 1.4rem",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -243,7 +275,7 @@ export default function ProjectsPage() {
               gap: "0.8rem",
               borderTop: "1px solid var(--border-card)"
             }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
                 {activeMedia.overview && (
                   <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", maxWidth: "450px" }}>
                     {activeMedia.overview}
@@ -269,20 +301,33 @@ export default function ProjectsPage() {
               </div>
 
               {activeMedia.url && (
-                <a
-                  href={activeMedia.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="sp-btn-red"
-                  style={{
-                    fontSize: "0.72rem",
-                    padding: "0.5rem 1.1rem",
-                    textDecoration: "none"
-                  }}
-                >
-                  Open Full Asset ↗
-                </a>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+                  <button
+                    type="button"
+                    onClick={() => setIsMaximized((v) => !v)}
+                    className="sp-btn-dark"
+                    style={{
+                      fontSize: "0.72rem",
+                      padding: "0.5rem 0.9rem",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {isMaximized ? "RESTORE VIEW" : "FULLSCREEN VIEW ⛶"}
+                  </button>
+                  <a
+                    href={activeMedia.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="sp-btn-red"
+                    style={{
+                      fontSize: "0.72rem",
+                      padding: "0.5rem 1.1rem",
+                      textDecoration: "none"
+                    }}
+                  >
+                    VIEW FULL ASSET ↗
+                  </a>
+                </div>
               )}
             </div>
           </div>

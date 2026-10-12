@@ -20,6 +20,15 @@ export default function AIVoiceAssistant({ onOpenTextChat }) {
   const [history, setHistory] = useState([]);
 
   const isProcessingRef = useRef(false);
+  const historyRef = useRef(history);
+  useEffect(() => {
+    historyRef.current = history;
+  }, [history]);
+
+  const voiceMutedRef = useRef(voiceMuted);
+  useEffect(() => {
+    voiceMutedRef.current = voiceMuted;
+  }, [voiceMuted]);
 
   // Global trigger listener (e.g. from Navbar or Hero buttons)
   useEffect(() => {
@@ -37,6 +46,51 @@ export default function AIVoiceAssistant({ onOpenTextChat }) {
     window.addEventListener("open-voice-assistant", handleOpenTrigger);
     return () => window.removeEventListener("open-voice-assistant", handleOpenTrigger);
   }, []);
+
+  // Process User Voice or Prompt Input
+  const handleVoiceSubmit = useCallback(async (spokenQuery) => {
+    if (!spokenQuery || isProcessingRef.current) return;
+    isProcessingRef.current = true;
+    setVoiceStatus("thinking");
+    aiVoice.playChime("thought");
+    aiVoice.stopListening();
+
+    const currentHistory = historyRef.current;
+    const userMessage = { role: "user", content: spokenQuery };
+    const updatedHistory = [...currentHistory, userMessage];
+    setHistory(updatedHistory);
+
+    try {
+      const response = await queryJerryAI(spokenQuery, updatedHistory);
+      setAiResponse(response.text);
+
+      const assistantMessage = { role: "assistant", content: response.text };
+      setHistory([...updatedHistory, assistantMessage]);
+
+      // Check if navigation action was triggered
+      if (response.navPath && response.navPath !== location.pathname) {
+        setNavNotification(`⚡ DIRECTIVE: Navigating to ${response.navPath}`);
+        setTimeout(() => {
+          navigate(response.navPath);
+          setTimeout(() => setNavNotification(null), 3000);
+        }, 900);
+      }
+
+      // Speak response out loud
+      if (!voiceMutedRef.current) {
+        aiVoice.speak(response.text);
+      } else {
+        setVoiceStatus("idle");
+      }
+    } catch (err) {
+      const fallback = "My communication antenna caught a glitch, but Jeeshan is ready for action! What else can I guide you with?";
+      setAiResponse(fallback);
+      if (!voiceMutedRef.current) aiVoice.speak(fallback);
+      setVoiceStatus("idle");
+    } finally {
+      isProcessingRef.current = false;
+    }
+  }, [location.pathname, navigate]);
 
   // Synchronize with aiVoiceEngine subscriptions
   useEffect(() => {
@@ -70,51 +124,7 @@ export default function AIVoiceAssistant({ onOpenTextChat }) {
       aiVoice.stopSpeaking();
       aiVoice.stopListening();
     };
-  }, [history]);
-
-  // Process User Voice or Prompt Input
-  const handleVoiceSubmit = useCallback(async (spokenQuery) => {
-    if (!spokenQuery || isProcessingRef.current) return;
-    isProcessingRef.current = true;
-    setVoiceStatus("thinking");
-    aiVoice.playChime("thought");
-    aiVoice.stopListening();
-
-    const userMessage = { role: "user", content: spokenQuery };
-    const updatedHistory = [...history, userMessage];
-    setHistory(updatedHistory);
-
-    try {
-      const response = await queryJerryAI(spokenQuery, updatedHistory);
-      setAiResponse(response.text);
-
-      const assistantMessage = { role: "assistant", content: response.text };
-      setHistory([...updatedHistory, assistantMessage]);
-
-      // Check if navigation action was triggered
-      if (response.navPath && response.navPath !== location.pathname) {
-        setNavNotification(`⚡ DIRECTIVE: Navigating to ${response.navPath}`);
-        setTimeout(() => {
-          navigate(response.navPath);
-          setTimeout(() => setNavNotification(null), 3000);
-        }, 900);
-      }
-
-      // Speak response out loud
-      if (!voiceMuted) {
-        aiVoice.speak(response.text);
-      } else {
-        setVoiceStatus("idle");
-      }
-    } catch (err) {
-      const fallback = "My communication antenna caught a glitch, but Jeeshan is ready for action! What else can I guide you with?";
-      setAiResponse(fallback);
-      if (!voiceMuted) aiVoice.speak(fallback);
-      setVoiceStatus("idle");
-    } finally {
-      isProcessingRef.current = false;
-    }
-  }, [history, location.pathname, navigate, voiceMuted]);
+  }, [handleVoiceSubmit]);
 
   // Handle direct text submission
   const handleTextSubmit = (e) => {

@@ -18,6 +18,7 @@ function FanCard({
   isHovered,
   onHover,
   onClick,
+  onSelectProject,
   style
 }) {
   const videoRef = useRef(null);
@@ -127,7 +128,18 @@ function FanCard({
 
       {/* Bottom CTA Only */}
       <div className="sp-fan-card-bottom">
-        <span className="sp-card-action-hint">
+        <span
+          className="sp-card-action-hint"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onSelectProject) {
+              onSelectProject(project);
+            } else if (onClick) {
+              onClick();
+            }
+          }}
+          title={`View full asset for ${project.title}`}
+        >
           {isVideo && isHovered ? "WATCH REEL →" : "VIEW FULL ASSET →"}
         </span>
       </div>
@@ -681,6 +693,7 @@ const ProjectsWheelCarousel = forwardRef(function ProjectsWheelCarousel(
                 }
               }}
               onClick={() => handleCardClick(diff, project)}
+              onSelectProject={onSelectProject}
               style={{
                 transform,
                 zIndex,

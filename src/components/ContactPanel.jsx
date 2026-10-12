@@ -685,64 +685,31 @@ export function ContactPanel({
       ) : (
         /* ── INTERACTIVE FORM MODE ─────────────────────────────────────────── */
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
-          {/* Header */}
+          {/* Minimal Form Header */}
           <div>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono, monospace)',
-                fontSize: '0.72rem',
-                fontWeight: 800,
-                color: 'var(--red, #FF5A00)',
-                letterSpacing: '1.2px',
-                display: 'block'
-              }}
-            >
-              [{eyebrow}]
-            </span>
             <h2
               style={{
                 fontFamily: 'var(--font-hero, sans-serif)',
-                fontSize: compact ? '1.5rem' : '1.85rem',
+                fontSize: compact ? '1.4rem' : '1.75rem',
                 fontWeight: 900,
                 color: 'var(--text-primary, #F2ECDF)',
-                marginTop: '0.2rem'
+                margin: 0
               }}
             >
               {title}
             </h2>
-            <p
-              style={{
-                fontSize: '0.88rem',
-                color: 'var(--text-secondary, #B0C4C7)',
-                marginTop: '0.3rem',
-                lineHeight: 1.5
-              }}
-            >
-              {subtitle}
-            </p>
-          </div>
-
-          {/* Destination Badge */}
-          <div
-            style={{
-              background: 'var(--bg-secondary, #0D1617)',
-              border: '1px solid var(--border-card, #2A383B)',
-              borderRadius: '4px',
-              padding: '0.65rem 1rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '0.5rem',
-              fontFamily: 'var(--font-mono, monospace)',
-              fontSize: '0.76rem'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ color: 'var(--red, #FF5A00)' }}>●</span>
-              <span style={{ color: 'var(--text-muted, #7E8C8E)' }}>DIRECT STUDIO INBOX:</span>
-              <strong style={{ color: 'var(--brand-primary, #0B6E76)' }}>{JEESHAN_PRIMARY_EMAIL}</strong>
-            </div>
+            {subtitle && (
+              <p
+                style={{
+                  fontSize: '0.88rem',
+                  color: 'var(--text-secondary, #B0C4C7)',
+                  marginTop: '0.35rem',
+                  lineHeight: 1.5
+                }}
+              >
+                {subtitle}
+              </p>
+            )}
           </div>
 
           {/* Row 1: Name & Email */}
@@ -1093,31 +1060,6 @@ export function ContactPanel({
               </div>
             </div>
 
-            {/* Live Synchronized Confirmation Badge (Info only - 0 buttons) */}
-            <div
-              style={{
-                background: 'var(--card-bg, #151F21)',
-                border: '1px solid var(--border-card, #2A383B)',
-                borderRadius: '4px',
-                padding: '0.7rem 1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '0.5rem',
-                fontFamily: 'var(--font-mono, monospace)',
-                fontSize: '0.72rem'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ color: 'var(--brand-primary, #0B6E76)' }}>🟢</span>
-                <span style={{ color: 'var(--text-muted, #7E8C8E)' }}>SYNCHRONIZATION TARGET:</span>
-                <span style={{ color: 'var(--text-primary, #F2ECDF)' }}>Google Meet Discovery Call</span>
-              </div>
-              <div style={{ color: 'var(--red, #FF5A00)', fontWeight: 800 }}>
-                {meetingDate} @ {meetingTime} ({timezone.split(' ')[0]})
-              </div>
-            </div>
           </div>
 
 
@@ -1193,17 +1135,6 @@ export function ContactPanel({
                 ? submissionProgress || 'AUTOMATICALLY SCHEDULING GOOGLE MEET...'
                 : 'TRANSMIT DIRECTIVE & AUTO-SCHEDULE GOOGLE MEET →'}
             </button>
-          </div>
-
-          <div
-            style={{
-              fontSize: '0.72rem',
-              color: 'var(--text-muted, #7E8C8E)',
-              textAlign: 'center',
-              fontFamily: 'var(--font-mono, monospace)'
-            }}
-          >
-            DISPATCH TARGET: {JEESHAN_PRIMARY_EMAIL} // GOOGLE SHEETS &amp; CALENDAR AUTO-CONFIRMED
           </div>
         </form>
       )}

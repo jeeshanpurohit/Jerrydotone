@@ -505,11 +505,12 @@ class AIVoiceEngine {
     this.currentSpokenText = "";
     clearTimeout(this.restartTimer);
 
-    // Warm-up and test browser microphone access upfront
+    // Warm-up and test browser microphone access safely without holding exclusive device locks
     if (typeof navigator !== "undefined" && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        this.activeMediaStream = stream;
+        // Release stream tracks immediately so speech recognition can access the audio device cleanly
+        stream.getTracks().forEach((track) => track.stop());
       } catch (err) {
         console.warn("Microphone access prompt:", err);
         this.userWantsListening = false;
@@ -522,12 +523,24 @@ class AIVoiceEngine {
     }
 
     const rec = this.setupRecognition();
-    if (rec) {
-      try {
-        rec.start();
-      } catch (e) {
-        console.warn("Could not start speech recognition:", e);
-      }
+    if (!rec) {
+      this.userWantsListening = false;
+      this.notify({
+        type: "listening_error",
+        error: "Speech recognition is not supported in this browser. Please use Google Chrome, Microsoft Edge, or Safari, or type your message below!"
+      });
+      return;
+    }
+
+    try {
+      rec.start();
+    } catch (e) {
+      console.warn("Could not start speech recognition:", e);
+      this.userWantsListening = false;
+      this.notify({
+        type: "listening_error",
+        error: "Could not activate microphone. Please verify microphone permissions and retry."
+      });
     }
   }
 
@@ -587,7 +600,9 @@ class AIVoiceEngine {
 
 // ── GEMINI PRO INTELLIGENCE MODEL CALLER ──────────────────────────────────────────
 export async function queryJerryAI(userQuery, conversationHistory = []) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey =
+    import.meta.env?.VITE_GEMINI_API_KEY ||
+    (typeof process !== "undefined" ? process.env?.VITE_GEMINI_API_KEY : null);
 
   // Check if query is an explicit navigation command (e.g. "go to projects")
   const navIntent = aiVoice.detectNavigation(userQuery);
@@ -595,20 +610,39 @@ export async function queryJerryAI(userQuery, conversationHistory = []) {
   // 1. Query Gemini Pro (with automatic fallback for guaranteed uptime)
   if (apiKey && apiKey !== "your_gemini_api_key_here") {
     const candidateModels = [
-      "gemini-pro-latest",
-      "gemini-3.1-pro-preview",
-      "gemini-2.5-pro",
+      "gemini-3.5-flash-lite",
       "gemini-3.5-flash",
+      "gemini-3.6-flash",
       "gemini-3.8-flash"
     ];
 
-    const contents = [
-      ...conversationHistory.slice(-6).map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }],
-      })),
-      { role: "user", parts: [{ text: userQuery }] }
-    ];
+    // Filter and sanitize conversation history for Gemini API
+    const rawHistory = Array.isArray(conversationHistory) ? conversationHistory : [];
+    const firstUserIndex = rawHistory.findIndex((m) => m && m.role === "user");
+    const sanitizedHistory = firstUserIndex !== -1 ? rawHistory.slice(firstUserIndex) : [];
+
+    const contents = [];
+    for (const msg of sanitizedHistory.slice(-6)) {
+      if (!msg?.content?.trim()) continue;
+      const role = msg.role === "assistant" ? "model" : "user";
+      if (contents.length > 0 && contents[contents.length - 1].role === role) {
+        contents[contents.length - 1].parts[0].text += `\n${msg.content.trim()}`;
+      } else {
+        contents.push({
+          role,
+          parts: [{ text: msg.content.trim() }]
+        });
+      }
+    }
+
+    if (contents.length > 0 && contents[contents.length - 1].role === "user") {
+      contents[contents.length - 1].parts[0].text += `\n${userQuery.trim()}`;
+    } else {
+      contents.push({
+        role: "user",
+        parts: [{ text: userQuery.trim() }]
+      });
+    }
 
     const body = {
       systemInstruction: { parts: [{ text: JERRY_SYSTEM_PROMPT }] },
@@ -620,21 +654,28 @@ export async function queryJerryAI(userQuery, conversationHistory = []) {
     };
 
     for (const modelName of candidateModels) {
+      let timeoutId;
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+
+        const controller = new AbortController();
+        timeoutId = setTimeout(() => controller.abort(), 5000);
 
         const res = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
 
         if (res.ok) {
           const data = await res.json();
           const candidate = data.candidates?.[0];
-          const replyText =
-            candidate?.content?.parts?.find((p) => p.text)?.text ||
-            candidate?.content?.parts?.[0]?.text;
+          const textPart =
+            candidate?.content?.parts?.find((p) => p.text && !p.thought) ||
+            candidate?.content?.parts?.find((p) => p.text);
+          const replyText = textPart?.text;
 
           if (replyText) {
             return {
@@ -645,21 +686,38 @@ export async function queryJerryAI(userQuery, conversationHistory = []) {
           }
         }
       } catch (e) {
+        if (timeoutId) clearTimeout(timeoutId);
         console.warn(`Gemini (${modelName}) request fallback:`, e);
       }
     }
   }
 
-  // 2. Intelligent Dynamic Fallback (If offline or network drop)
+  // 2. Intelligent Dynamic Fallback (If offline or network drops, smartly answer based on query semantics)
   const lower = userQuery.toLowerCase();
-  let fallbackText = `Jeeshan is an accomplished Visual Designer, Motion Artist, and Creative Technologist from JIET. He leads branding systems and 2D motion. What else can I share with you?`;
+  let fallbackText = "";
 
   if (navIntent) {
-    fallbackText = `Right away! Directing you to ${navIntent.label}. Let me know what you think of Jeeshan's work!`;
-  } else if (lower.includes("hire") || lower.includes("contact") || lower.includes("email") || lower.includes("meet")) {
-    fallbackText = `You can connect directly with Jeeshan at jerrydotone@gmail.com or book a discovery Google Meet on the contact page!`;
-  } else if (lower.includes("who are you") || lower.includes("what is your name")) {
-    fallbackText = `I'm Jerry, Jeeshan's AI studio companion! I'm here to answer any questions about his work, experience, and design arsenal.`;
+    fallbackText = `Right away! Navigating you directly to ${navIntent.label}. Let me know what you think of Jeeshan's work!`;
+  } else if (lower.includes("who are you") || lower.includes("what are you") || lower.includes("your name")) {
+    fallbackText = `I'm Jerry, Jeeshan's AI studio companion! Think of me as part creative co-pilot, part Jarvis for Jeeshan's work. Ask me about his projects, skills, or booking a meeting.`;
+  } else if (lower.includes("who is jeeshan") || lower.includes("about jeeshan") || lower.includes("background") || lower.includes("education") || lower.includes("college") || lower.includes("degree")) {
+    fallbackText = `Jeeshan Purohit is a multidisciplinary Visual Designer and Creative Technologist with a B.Tech. in Computer Science and Engineering from JIET Jodhpur (7 CGPA). He combines engineering precision with creative direction across 9+ organizations.`;
+  } else if (lower.includes("skill") || lower.includes("software") || lower.includes("tool") || lower.includes("stack") || lower.includes("tech")) {
+    fallbackText = `Jeeshan's creative arsenal spans Adobe Photoshop, Illustrator, Premiere Pro, After Effects, and InDesign, paired with Figma for UI/UX, Python for simulations, and HTML5/CSS3. He specializes in brand identity systems, 2D motion, and commercial video editing.`;
+  } else if (lower.includes("project") || lower.includes("work") || lower.includes("portfolio") || lower.includes("case study")) {
+    fallbackText = `Jeeshan has led brand identities for Metronix Entertainment and Plutus World, created 2D animations and scientific simulations for IIT Roorkee Chemistry Virtual Labs, and founded the award-winning OCULUS club. You can check out all 56+ projects in the Projects section!`;
+  } else if (lower.includes("hire") || lower.includes("contact") || lower.includes("email") || lower.includes("meet") || lower.includes("call") || lower.includes("reach")) {
+    fallbackText = `You can connect directly with Jeeshan at jerrydotone@gmail.com or book a Google Meet discovery call right on the Contact page. He's available for brand guidelines, motion graphics, and UI/UX projects!`;
+  } else if (lower.includes("brand") || lower.includes("jerrydot") || lower.includes("discipline")) {
+    fallbackText = `Jeeshan operates under 4 creative brands: Jerrydotart (Art & Graphic Design), Jerrydotmov (Videography & 2D Motion), Jerrydotdng (Photography & DNG RAW visuals), and Jerrydotone (Personal monolithic brand & UX case studies).`;
+  } else if (lower.includes("spiderman") || lower.includes("spider-man") || lower.includes("mask") || lower.includes("comic")) {
+    fallbackText = `The Spider-Man aesthetic reflects Jeeshan's belief that 'with great technical craft comes great storytelling responsibility.' Unmask the hero photo on the homepage to see both sides of the creator!`;
+  } else if (lower.includes("experience") || lower.includes("job") || lower.includes("role") || lower.includes("organization")) {
+    fallbackText = `Jeeshan has 4+ years of professional experience across 9+ organizations, including Metronix Entertainment LLP, IIT Roorkee Virtual Labs, VSupportU, and Solidarieta Conclave. Check the Experience page for full timeline details!`;
+  } else if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey") || lower.includes("sup")) {
+    fallbackText = `Hey there! Welcome to Jeeshan's studio. I can tell you about his projects, explain his creative toolkit, or help you book a discovery call. What are you curious about?`;
+  } else {
+    fallbackText = `Jeeshan is a Visual Designer, Motion Artist, and Creative Technologist specializing in brand identity, commercial video editing, and 2D animation. Ask me about his projects, software tools, or how to collaborate!`;
   }
 
   return {

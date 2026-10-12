@@ -84,31 +84,6 @@ export function ContactPage() {
           }}>
             Initiate a directive for enterprise brand guidelines, commercial motion graphics, after-film production, or UI/UX engineering. Queries automatically synchronize with Google Workspace (<strong style={{ color: 'var(--brand-primary)' }}>{JEESHAN_PRIMARY_EMAIL}</strong>) and schedule in Google Calendar with Google Meet.
           </p>
-
-          {/* Quick Target Mail Banner */}
-          <div className="sp-contact-dest-banner" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.6rem',
-            marginTop: '1.8rem',
-            background: 'var(--card-bg)',
-            border: '1px solid var(--border-card)',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.78rem',
-            flexWrap: 'wrap',
-            maxWidth: '100%'
-          }}>
-            <span style={{ color: 'var(--red)' }}>●</span>
-            <span style={{ color: 'var(--text-muted)' }}>PRIMARY WORKSPACE DESTINATION:</span>
-            <a
-              href={`mailto:${JEESHAN_PRIMARY_EMAIL}`}
-              style={{ color: 'var(--brand-primary)', fontWeight: 800, textDecoration: 'none', wordBreak: 'break-all' }}
-            >
-              {JEESHAN_PRIMARY_EMAIL}
-            </a>
-          </div>
         </div>
 
         {/* ── MAIN WORKSPACE & FORM SECTION ─────────────────────────────────── */}

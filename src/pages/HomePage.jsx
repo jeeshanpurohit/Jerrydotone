@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { DATA, WebSVG } from "../shared";
 import { brandIdentities, experienceList } from "../data/portfolioData";
-import { ContactPanel } from "../components/ContactPanel";
-
 import { isAudioGloballyEnabled } from "../context/AudioContext";
+
 
 // Haptic hover tone (Web Audio, no extra deps)
 let _hpCtx = null;
@@ -259,10 +258,7 @@ function ExperiencePreviewSection() {
 
       <div style={{ marginTop: "3rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
         <Link to="/experience" className="sp-btn-red" style={{ textDecoration: "none" }}>
-          EXPLORE ALL 9 ROLES →
-        </Link>
-        <Link to="/skills" className="sp-btn-dark" style={{ textDecoration: "none" }}>
-          VIEW FULL ARSENAL →
+          EXPLORE ALL 9 ROLES &amp; ARSENAL →
         </Link>
       </div>
     </section>
@@ -278,12 +274,25 @@ function ContactSection() {
         </svg>
       </div>
 
-      <div style={{ maxWidth: '960px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
-        <ContactPanel
-          eyebrow="COMMISSION DISPATCH & GOOGLE MEET DISCOVERY"
-          title="CONTACT & INITIATE DIRECTIVE."
-          subtitle="Schedule a discovery call with auto Google Meet, register in Google Sheets, and transmit project requirements directly to jerrydotone@gmail.com."
-        />
+      <div style={{ maxWidth: '700px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
+        <span className="sp-eyebrow" style={{ justifyContent: 'center', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span className="sp-eyebrow-flag" />
+          LET'S BUILD SOMETHING
+        </span>
+        <h2 className="sp-section-title" style={{ marginTop: '0.8rem' }}>READY TO COLLABORATE?</h2>
+        <div className="sp-title-underline" style={{ margin: '0.8rem auto' }} />
+        <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.7, margin: '1.5rem auto 0', maxWidth: '520px' }}>
+          Available for brand identity, motion graphics, video production &amp; UI/UX projects. 
+          Let's schedule a Google Meet and bring your vision to life.
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
+          <Link to="/contact" className="sp-btn-red" style={{ textDecoration: 'none', padding: '0.9rem 2.2rem', fontSize: '0.88rem' }} onMouseEnter={() => hapticHover()}>
+            BOOK A DISCOVERY CALL →
+          </Link>
+        </div>
+        <div style={{ marginTop: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>
+          {DATA.email} &nbsp;/&nbsp; {DATA.phone} &nbsp;/&nbsp; {DATA.location}
+        </div>
       </div>
     </section>
   );

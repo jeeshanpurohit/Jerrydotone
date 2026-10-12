@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { aiVoice, queryJerryAI } from "../utils/aiVoiceEngine";
 
 // ── CHATBOT COMPONENT ─────────────────────────────────────────────────────────
@@ -26,9 +27,33 @@ export default function ChatBot() {
   const [isListening, setIsListening] = useState(false);
   const [speakingMsgId, setSpeakingMsgId] = useState(null);
   const [interimText, setInterimText] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [micNotice, setMicNotice] = useState(null);
 
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+
+  const messagesRef = useRef(messages);
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  const voiceEnabledRef = useRef(voiceEnabled);
+  useEffect(() => {
+    voiceEnabledRef.current = voiceEnabled;
+  }, [voiceEnabled]);
+
+  const loadingRef = useRef(loading);
+  useEffect(() => {
+    loadingRef.current = loading;
+  }, [loading]);
+
+  const inputRefVal = useRef(input);
+  useEffect(() => {
+    inputRefVal.current = input;
+  }, [input]);
 
   // Synchronize aiVoice enabled state
   useEffect(() => {
@@ -37,6 +62,81 @@ export default function ChatBot() {
       localStorage.setItem("jerry_voice_enabled", voiceEnabled ? "true" : "false");
     } catch {}
   }, [voiceEnabled]);
+
+  // Auto-scroll chat to latest message / typing indicator
+  useEffect(() => {
+    if (open) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, loading, open]);
+
+  // Auto-focus input on opening
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  // Core sendMessage function using latest references
+  const sendMessage = useCallback(async (overrideText) => {
+    const text = (overrideText !== undefined ? overrideText : inputRefVal.current).trim();
+    if (!text || loadingRef.current) return;
+
+    // Immediately lock sending state
+    loadingRef.current = true;
+    setLoading(true);
+
+    aiVoice.stopSpeaking();
+    aiVoice.stopListening();
+    setSpeakingMsgId(null);
+    setMicNotice(null);
+
+    const currentHistory = messagesRef.current;
+    const userMsg = { role: "user", content: text };
+    const updatedMessages = [...currentHistory, userMsg];
+    setMessages(updatedMessages);
+    setInput("");
+
+    try {
+      const response = await queryJerryAI(text, currentHistory);
+      const reply = response?.text || "I'm Jerry, Jeeshan's creative assistant! What would you like to explore next?";
+      const assistantMsg = { role: "assistant", content: reply };
+      setMessages((prev) => [...prev, assistantMsg]);
+
+      // Handle navigation intent if requested (e.g. "go to projects")
+      if (response?.navPath && response.navPath !== location.pathname) {
+        setTimeout(() => {
+          navigate(response.navPath);
+        }, 800);
+      }
+
+      // Speak reply if voice is enabled
+      if (voiceEnabledRef.current) {
+        aiVoice.speak(reply, {
+          onStart: () => setSpeakingMsgId(updatedMessages.length),
+          onEnd: () => setSpeakingMsgId(null)
+        });
+      }
+    } catch (e) {
+      const errMsg = `Oops! Something went wrong: ${e.message}`;
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: errMsg },
+      ]);
+      if (voiceEnabledRef.current) {
+        aiVoice.speak(errMsg);
+      }
+    } finally {
+      loadingRef.current = false;
+      setLoading(false);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
+    }
+  }, [location.pathname, navigate]);
 
   // Subscribe to AI Voice engine events
   useEffect(() => {
@@ -48,18 +148,22 @@ export default function ChatBot() {
         setSpeakingMsgId(null);
       } else if (event.type === "listening_start") {
         setIsListening(true);
+        setMicNotice(null);
       } else if (event.type === "listening_end") {
         setIsListening(false);
         setInterimText("");
       } else if (event.type === "speech_result") {
         setInterimText(event.transcript);
+        setInput(event.transcript);
         if (event.isFinal && event.transcript.trim()) {
-          setInput(event.transcript.trim());
           sendMessage(event.transcript.trim());
         }
       } else if (event.type === "listening_error") {
         setIsListening(false);
         setInterimText("");
+        if (event.error) {
+          setMicNotice(event.error);
+        }
       }
     });
 
@@ -68,71 +172,10 @@ export default function ChatBot() {
       aiVoice.stopSpeaking();
       aiVoice.stopListening();
     };
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(() => setPulsing(false), 6000);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open, loading]);
-
-  useEffect(() => {
-    if (open) setTimeout(() => inputRef.current?.focus(), 150);
-  }, [open]);
-
-  // Listen for open-text-chat event from Voice HUD
-  useEffect(() => {
-    const handleOpenText = () => setOpen(true);
-    window.addEventListener("open-text-chat", handleOpenText);
-    return () => window.removeEventListener("open-text-chat", handleOpenText);
-  }, []);
-
-  const sendMessage = useCallback(async (overrideText) => {
-    const text = (overrideText || input).trim();
-    if (!text || loading) return;
-
-    aiVoice.stopSpeaking();
-    aiVoice.stopListening();
-    setSpeakingMsgId(null);
-
-    const userMsg = { role: "user", content: text };
-    const newMessages = [...messages, userMsg];
-    setMessages(newMessages);
-    setInput("");
-    setLoading(true);
-
-    try {
-      const response = await queryJerryAI(text, messages);
-      const reply = response.text;
-      const assistantMsg = { role: "assistant", content: reply };
-      setMessages((prev) => [...prev, assistantMsg]);
-
-      // Speak reply if voice is enabled
-      if (voiceEnabled) {
-        aiVoice.speak(reply, {
-          onStart: () => setSpeakingMsgId(newMessages.length),
-          onEnd: () => setSpeakingMsgId(null)
-        });
-      }
-    } catch (e) {
-      const errMsg = `Oops! Something went wrong: ${e.message}`;
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: errMsg },
-      ]);
-      if (voiceEnabled) {
-        aiVoice.speak(errMsg);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [input, loading, messages, voiceEnabled]);
+  }, [sendMessage]);
 
   const handleKey = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent?.isComposing) {
       e.preventDefault();
       sendMessage();
     }
@@ -329,7 +372,6 @@ export default function ChatBot() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}
-            disabled={loading}
           />
 
           {/* Microphone Voice Input Button */}

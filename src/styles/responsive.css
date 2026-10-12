@@ -19,7 +19,7 @@ html, body {
   }
 }
 
-/* ── TABLETS & MEDIUM VIEWPORTS (<= 1024px) ────────────────────────────────── */
+/* ── TABLETS & MEDIUM VIEWPORTS (<= 1024px) ────────────────────────────── */
 @media (max-width: 1024px) {
   .sp-about-grid {
     grid-template-columns: 1fr;
@@ -35,15 +35,90 @@ html, body {
   .sp-hero-img-wrap {
     width: 60%;
   }
+  .sp-nav {
+    padding: 0 2rem;
+  }
+  .sp-nav-links {
+    gap: 1.6rem;
+  }
 }
 
-/* ── MOBILE SCREENS & SMALL TABLETS (<= 768px) ────────────────────────────── */
+/* ── MOBILE SCREENS & SMALL TABLETS (<= 768px) ────────────────────────── */
 @media (max-width: 768px) {
   :root {
     --section-gap: 3rem;
   }
 
-  /* Typography Fluid Scaling */
+  /* ── NAVBAR ── */
+  .sp-nav {
+    padding: 0 1.2rem;
+    height: 58px;
+  }
+
+  .sp-nav-links {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem 1.8rem;
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto;
+    border-top: 2px solid var(--red);
+    display: flex !important;
+  }
+
+  .sp-nav-links.open {
+    transform: translateX(0);
+  }
+
+  .sp-nav-links li {
+    width: 100%;
+    border-bottom: 1px solid var(--border-card);
+  }
+
+  .sp-nav-link {
+    display: block;
+    padding: 1.1rem 0;
+    font-size: 1rem !important;
+    letter-spacing: 2px;
+    width: 100%;
+  }
+
+  .sp-nav-burger {
+    display: flex !important;
+  }
+
+  .sp-nav-right {
+    gap: 0.5rem;
+  }
+
+  /* Hide desktop-only elements in nav on mobile */
+  .sp-nav-contact-btn,
+  .btn-nav-voice-ai,
+  .desktop-audio-toggle {
+    display: none !important;
+  }
+
+  /* Show mobile-specific nav items */
+  .sp-nav-mobile-contact-item,
+  .sp-nav-mobile-voice-item,
+  .sp-nav-mobile-audio {
+    display: block !important;
+  }
+
+  .sp-nav-mobile-audio {
+    margin-top: 1.5rem;
+  }
+
+  /* ── TYPOGRAPHY ── */
   h1, .sp-hero-name {
     font-size: clamp(2.8rem, 11vw, 4.8rem) !important;
     line-height: 0.95 !important;
@@ -58,12 +133,13 @@ html, body {
     letter-spacing: 1.5px !important;
   }
 
-  /* Hero Section */
+  /* ── HERO SECTION ── */
   .sp-hero {
     min-height: auto;
-    padding: calc(var(--nav-h, 60px) + 2rem) 1.2rem 3rem !important;
+    padding: calc(58px + 2.5rem) 1.2rem 3rem !important;
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   .sp-hero-content {
@@ -75,8 +151,8 @@ html, body {
   }
 
   .sp-hero-tagline {
-    font-size: 0.72rem !important;
-    letter-spacing: 1.8px !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 1.6px !important;
     margin-bottom: 0.8rem;
   }
 
@@ -99,8 +175,8 @@ html, body {
   .sp-hero-img-wrap {
     width: 100% !important;
     max-width: 340px;
-    height: 380px !important;
-    min-height: 340px !important;
+    height: 360px !important;
+    min-height: 320px !important;
     margin: 2rem auto 0;
   }
 
@@ -109,16 +185,38 @@ html, body {
     height: 110px !important;
   }
 
-  /* Section Spacing & Padding */
+  /* ── SECTION SPACING ── */
   .sp-section {
     padding: 3rem 1.2rem !important;
   }
 
   .sp-page-wrap {
-    padding-top: 56px;
+    padding-top: 58px;
   }
 
-  /* Form & Interactive Panels */
+  /* ── BRAND IDENTITIES SECTION ── */
+  .sp-brands-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .sp-brand-card {
+    padding: 1.4rem !important;
+  }
+
+  /* ── EXPERIENCE PREVIEW ── */
+  .sp-exp-preview-card {
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important;
+    padding: 1.2rem !important;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .sp-section-header {
+    padding: 0 0 2rem !important;
+  }
+
+  /* ── GRIDS ── */
   .sp-contact-layout-grid,
   .sp-skills-layout-grid,
   .sp-services-layout-grid,
@@ -134,13 +232,17 @@ html, body {
     gap: 1rem !important;
   }
 
-  /* Booking & Inquiries Form */
-  .sp-booking-card,
-  .sp-contact-form-container {
-    padding: 1.4rem 1.1rem !important;
+  /* ── CONTACT PANEL ── */
+  .sp-contact-panel-root {
+    padding: 1.6rem 1.2rem !important;
   }
 
-  /* Footer */
+  /* Hide verbose meta badges on mobile */
+  .sp-contact-panel-root .sp-destination-badge {
+    display: none;
+  }
+
+  /* ── FOOTER ── */
   .sp-footer {
     padding: 3rem 1.2rem 2rem !important;
   }
@@ -169,13 +271,100 @@ html, body {
     padding: 0.4rem 0.2rem;
     font-size: 0.8rem;
   }
+
+  /* ── CHATBOT ── */
+  .cb-window {
+    right: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 90vh !important;
+    border-radius: 16px 16px 0 0 !important;
+  }
+
+  .cb-fab {
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+
+  /* ── VOICE ASSISTANT DOCK ── */
+  .va-dock-container {
+    right: 1rem !important;
+    bottom: 5rem !important;
+  }
+
+  /* ── PORTFOLIO HEADER WORD EFFECT ── */
+  .sp-portfolio-hero {
+    margin-bottom: 1.2rem !important;
+    padding-top: 0.5rem !important;
+  }
+
+  .sp-portfolio-stack-stage {
+    transform: scale(calc(min(1, (100vw - 32px) / 780)));
+    transform-origin: center center;
+    max-width: 100% !important;
+  }
+
+  .sp-flank-arrow {
+    display: none !important;
+  }
+
+  /* ── CATEGORY LOGOS DOCK ── */
+  .sp-logo-tabs-dock {
+    max-width: 95vw !important;
+    overflow-x: auto !important;
+    padding: 0.4rem 0.6rem !important;
+    gap: 0.6rem !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sp-logo-tab-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    padding: 7px !important;
+  }
+
+  /* ── 9:16 FAN WHEEL CAROUSEL ── */
+  .sp-wheel-carousel-stage {
+    height: 490px !important;
+    margin: 0.5rem auto 2rem !important;
+    transform: scale(calc(min(1, (100vw - 20px) / 460)));
+    transform-origin: center top;
+  }
+
+  .sp-fan-card {
+    width: clamp(170px, 45vw, 210px) !important;
+  }
+
+  .sp-dial-disc-wrap {
+    bottom: -220px !important;
+    width: 520px !important;
+    height: 520px !important;
+  }
+
+  /* ── FORM INPUTS (16px to prevent iOS auto-zoom) ── */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }
 
-/* ── SMALL PHONES (<= 480px) ──────────────────────────────────────────────── */
+/* ── SMALL PHONES (<= 480px) ──────────────────────────────────────────── */
 @media (max-width: 480px) {
-  /* Ultra-compact padding for standard small phone bounds (360px - 390px) */
+  .sp-wheel-carousel-stage {
+    height: 440px !important;
+    transform: scale(calc(min(1, (100vw - 16px) / 410))) !important;
+    transform-origin: center top !important;
+  }
+
+  .sp-portfolio-stack-stage {
+    transform: scale(calc(min(1, (100vw - 20px) / 700))) !important;
+    height: 140px !important;
+  }
+
   .sp-nav {
-    padding: 0 0.85rem !important;
+    padding: 0 0.9rem !important;
   }
 
   .sp-section {
@@ -186,6 +375,7 @@ html, body {
     font-size: clamp(1.75rem, 8vw, 2.4rem) !important;
   }
 
+  /* Stats cards */
   .sp-stat-card {
     padding: 1rem !important;
   }
@@ -204,16 +394,43 @@ html, body {
     max-width: 95vw !important;
   }
 
+  /* Contact Panel — ultra compact on small phones */
+  .sp-contact-panel-root {
+    padding: 1.2rem 0.9rem !important;
+  }
+
+  .sp-contact-panel-root h2 {
+    font-size: 1.35rem !important;
+  }
+
   /* Jerry AI HUD Modal on compact mobile */
+  .va-hud-backdrop.open {
+    padding: 0 !important;
+    align-items: flex-end;
+  }
+
   .va-hud-panel {
     padding: 1rem !important;
     gap: 0.8rem !important;
-    max-height: calc(100vh - 1rem) !important;
+    max-height: 96vh !important;
+    border-radius: 16px 16px 0 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .va-hud-header {
     flex-direction: row;
     align-items: center;
+  }
+
+  .va-hud-actions {
+    gap: 0.35rem !important;
+    flex-wrap: wrap;
+  }
+
+  .va-hud-pill-btn {
+    font-size: 0.62rem !important;
+    padding: 0.3rem 0.55rem !important;
   }
 
   .va-hud-brand-mark {
@@ -227,6 +444,15 @@ html, body {
 
   .va-hud-sub {
     font-size: 0.6rem !important;
+  }
+
+  .va-orb-section {
+    padding: 0.5rem 0 !important;
+  }
+
+  .va-orb-container {
+    width: 100px !important;
+    height: 100px !important;
   }
 
   .va-text-input-bar {
@@ -244,6 +470,15 @@ html, body {
     padding: 0.55rem 0.75rem !important;
   }
 
+  /* Chatbot window on tiny screens */
+  .cb-window {
+    max-height: 95vh !important;
+  }
+
+  .cb-header {
+    padding: 0.75rem 1rem !important;
+  }
+
   /* Marquee ticker on small phones */
   .sp-marquee-wrap {
     padding: 0.6rem 0;
@@ -251,5 +486,62 @@ html, body {
   .sp-marquee-item {
     font-size: 0.7rem;
     padding: 0 1.2rem;
+  }
+
+  /* Brand cards on smallest screens */
+  .sp-brand-card {
+    padding: 1.1rem !important;
+  }
+
+  .sp-brand-logo-wrap {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Buttons full-width on tiny screens */
+  .sp-btn-red,
+  .sp-btn-dark {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Experience preview cards */
+  .sp-exp-preview-card > div:last-child {
+    display: none; /* hide tags column on tiny mobile to save space */
+  }
+}
+
+/* ── EXTRA NARROW (<= 360px) ─────────────────────────────────────────── */
+@media (max-width: 360px) {
+  h1, .sp-hero-name {
+    font-size: 2.6rem !important;
+  }
+
+  .sp-section {
+    padding: 2rem 0.75rem !important;
+  }
+
+  .sp-nav {
+    padding: 0 0.75rem !important;
+  }
+}
+
+/* ── LANDSCAPE MOBILE FIX ─────────────────────────────────────────────── */
+@media (max-width: 768px) and (orientation: landscape) {
+  .sp-hero {
+    min-height: auto !important;
+    padding-top: calc(58px + 1.5rem) !important;
+  }
+
+  .sp-hero-img-wrap {
+    max-width: 220px !important;
+    height: 240px !important;
+    min-height: 220px !important;
+  }
+
+  .va-hud-panel {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
   }
 }

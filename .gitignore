@@ -24,6 +24,7 @@ Recording *.mp4
 *.mp4
 *.mov
 *.MOV
+*.m4a
 !public/assets/projects/videos/*.mp4
 
 # Editor directories and system files
